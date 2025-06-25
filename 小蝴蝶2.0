@@ -1,0 +1,203 @@
+<!文档类型html >
+< html lang="zh-CN " >
+< head >
+< meta charset="UTF-8 " >
+< meta name = " viewport " content = " width = device-width，initial-scale=1.0 " >
+<标题>魔法答案之书</title >
+<风格>
+正文{
+字体系列:“Arial Rounded MT Bold”，“Helvetica Rounded”，Arial，无衬线；
+背景：线性梯度(135deg，#f5f7fa 0%，# E4 EDF 9 100%)；
+最小高度:100vh
+显示器:flex
+对齐-内容:居中；
+对齐-项目:居中；
+文本对齐:居中；
+填充:20px
+边距:0；
+颜色:# 5a67d8
+        }
+。容器{
+背景:rgba(255，255，255，0.95)；
+边框半径:20px
+填充:40像素x 30像素
+box-shadow: 0 10px 30px rgba(149，165，166，0.2)；
+最大宽度:500像素；
+宽度:100%；
+边框:2px纯色# e0e 7 ff
+        }
+h1 {
+颜色:# 6d 7 BD 1；
+边距-底部:10px
+字体大小:2.2雷姆；
+        }
+        .butterfly-icon {
+            font-size: 3rem;
+边距:15px 0；
+颜色:# a 78 BFA；
+            animation: float 3s ease-in-out infinite;
+        }
+        .answer-box {
+            background: #f0f4ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid #818cf8;
+            font-size: 1.4rem;
+            font-weight: bold;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .counter {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        .energy-out {
+            color: #ef4444;
+            font-weight: bold;
+            margin: 25px 0;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+        .creator-contact {
+            background: #e0f2fe;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        button {
+            background: linear-gradient(to right, #818cf8, #a78bfa);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(129, 140, 248, 0.4);
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(129, 140, 248, 0.5);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦋 魔法答案之书</h1>
+        <div class="butterfly-icon">🦋</div>
+        
+        <div id="content">
+            <!-- 内容由JavaScript动态填充 -->
+        </div>
+        
+        <div class="counter" id="counter">✨ 轻轻触碰，获取属于你的答案...</div>
+    </div>
+
+    <script>
+        // ====== 核心配置：在这里修改你的信息！ ======
+        const YOUR_NAME = "小蝶的创造者"; // 改成你的名字/昵称
+        const YOUR_CONTACT = "告诉我你的建议吧"; // 改成你的微信/邮箱/提示语
+        const MAX_USES = 10; // 最多使用次数
+
+        // ====== 答案库 (可随意增删修改！) ======
+        const answers = [
+            "跟随你的直觉", "时机未到", "大胆去做", "换个角度思考", "答案是肯定的",
+            "先放一放", "会有惊喜", "寻求帮助", "保持耐心", "相信你的选择",
+            "冒险一试", "专注当下", "答案在你心中", "顺其自然", "小小改变带来转机",
+            "倾听内心", "别想太多", "是时候行动了", "等待信号", "保持开放心态",
+            "答案即将显现", "信任这个过程", "你需要休息", "聚焦核心", "会有贵人相助",
+            "微笑面对", "答案出乎意料", "跟随快乐", "简单即真理", "一切皆有可能"
+        ];
+
+        // ====== 网站核心逻辑 (不需要动！) ======
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentDiv = document.getElementById('content');
+            const counterDiv = document.getElementById('counter');
+            
+            // 1. 获取或初始化使用次数
+let use count = local storage . getitem(' butterflyMagicCount ')；
+useCount = useCount？parse int(use count):0；
+const是首次访问=使用计数= = = 0；
+
+            // 2. 如果是第10次访问，显示能量耗尽页
+如果(使用次数> =最大使用次数){
+showEnergyDepleted()；
+返回；
+            }
+
+            // 3. 更新次数 (首次访问不计入次数，只显示欢迎语)
+如果(!isFirstVisit) {
+使用count++；
+本地存储setitem(' butterflyMagicCount ')，使用计数);
+            }
+
+            // 4. 显示随机答案或欢迎语
+if (isFirstVisit) {
+显示欢迎()；
+}否则{
+showRandomAnswer()；
+更新计数器(使用计数)；
+                
+                // 如果是第9次，添加温馨提醒
+if (useCount === MAX_USES - 1) {
+常量提醒=档案。createelement(' div ')；
+reminder . class name = " Energie erschpft "；
+reminder.innerHTML = ⚠️提示:这是德国的一种能源。！您好请到陈苏酒店。；
+contentDiv.appendChild(提醒) ;
+                }
+            }
+        });
+
+函数showWelcome() {
+文档。查询选择器(' h1 ')Text in halt = '↓Willkommen in Buch der magis Chen Antworten↓'；
+内容部门innerhtml = ` 1
+< div class= "答案框">
+< p >轻轻触碰你的小蝴蝶，< br >让它为你的疑问扇动翅膀...</p >
+</div >
+            `;
+counterDiv.innerHTML = `↓↓由$ { your _ name } </b > Erstellen und schenken Sie is persnlich "；
+        }
+
+函数showRandomAnswer() {
+常数随机指数=数学。地板（数学随机()*答案。长度);
+内容部门innerhtml = ` 1
+< div class= "答案框">
+" ${answers[randomIndex]}"</p >
+</div >
+< button onclick="location.reload()" >🦋 再问一次</button >
+            `;
+        }
+
+函数updateCounter(count) {
+counterDiv.innerHTML = `✨小蝴蝶已为你扇动翅膀${count}/${MAX_USES}</b >次`;
+        }
+
+函数showEnergyDepleted() {
+document.querySelector('h1 ')。innerHTML = '🦋 魔法能量已耗尽 🦋；
+内容部门innerhtml = ` 1
+< div class= "能量耗尽">
+< p >这只小蝴蝶已经为你闪耀了${MAX_USES}次！</p >
+< p >它的魔法暂时休息了...</p >
+< p >快去找它的创造者$ {您的姓名}，< br >她一定能为你充能并带来新的惊喜✨</p>
+</div >
+< div class= "创建者-联系人">
+$ {您的联系人}</p >
+</div >
+            `;
+counterDiv.innerHTML = '❄️能量归零,期待重逢 ❄️';
+        }
+</script >
+</body >
+</html >
